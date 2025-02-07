@@ -2,7 +2,7 @@
 
 ## Description :
 
-Actuellement étudiant en BUT3 Inforamtique à l'IUT de Rodez, suite à une demande de stage chez Buddl, je me vois assigné ce travail de conception et développement d'un site web à réaliser en Node.JS, Vue.JS et Express.JS.
+Actuellement étudiant en BUT3 Informatique à l'IUT de Rodez, suite à une demande de stage chez Buddl, je dois concevoir et développer un site web en Node.JS, Vue.JS et Express.JS.
 
 ## Equipe :
 
