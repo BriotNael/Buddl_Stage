@@ -1,0 +1,63 @@
+/* Importation de la police Quicksand depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+/* Appliquer un fond violet clair à toute la page */
+body {
+    background-color: #F1E7FF;
+    font-family: Arial, sans-serif; /* Police de secours */
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles pour les titres */
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    color: #333; /* Couleur du texte pour bien contraster */
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Raleway', sans-serif;
+    color: #333; /* Couleur du texte pour bien contraster */
+    text-align: center;
+    margin-top: 20px;
+}
+.chart-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Tout le contenu de la page (sauf le footer) */
+  .main-content {
+    padding-bottom: 60px; /* Espace pour ne pas que le contenu soit caché derrière le footer */
+  }
+  
+  /* Le footer est fixé en bas avec position fixed */
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #F1E7FF; /* ou toute autre couleur que tu préfères */
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+  }
+  
+  /* Si tu souhaites ajouter des styles pour les liens du footer */
+  footer a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: #007BFF;
+  }
