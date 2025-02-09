@@ -112,42 +112,6 @@ app.get('/articles/top-prix', async (req, res) => {
   }
 });
 
-// Route API pour récupérer les 5 articles les plus chers
-app.get('/articles/top-prix', async (req, res) => {
-  try {
-    const articlesTop = await Article.find()
-      .sort({ prix: -1 }) // Trie par prix décroissant
-      .limit(5); // Limite à 5 articles
-    res.json(articlesTop); // Renvoie les articles sous forme JSON
-  } catch (error) {
-    res.status(500).json({error:error});
-  }
-});
-
-// Route API pour récupérer les 5 articles les moins chers
-app.get('/articles/low-prix', async (req, res) => {
-  try {
-    const articlesLow = await Article.find()
-      .sort({ prix: 1 }) // Trie par prix croissant
-      .limit(5); // Limite à 5 articles
-    res.json(articlesLow); // Renvoie les articles sous forme JSON
-  } catch (error) {
-    res.status(500).json({error:error});
-  }
-});
-
-// Route API pour récupérer les 5 articles dont le stock est le plus bas
-app.get('/articles/low-stock', async (req, res) => {
-  try {
-    const articlesLowStock = await Article.find()
-      .sort({ quantiteStock: 1 }) // Trie par stock croissant
-      .limit(5); // Limite à 5 articles
-    res.json(articlesLowStock); // Renvoie les articles sous forme JSON
-  } catch (error) {
-    res.status(500).json({error:error});
-  }
-});
-
 // Lancer le serveur sur le port 3000
 app.listen(3000, () => {
   console.log('Serveur API lancé sur http://localhost:3000');
