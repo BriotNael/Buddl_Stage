@@ -14,7 +14,7 @@ Tout d'abord vous devez vous assurer de posséder Node.JS ainsi que NPM sur votr
 
 il vous faudra ensuite choisir une arborescence pour cloner le projet
 ```
-cd <arborescence-de-votre-choix
+cd <arborescence-de-votre-choix>
 ```
 Puis dans l'invite de commande il vous faudra cloner ce dernier
 ```
@@ -25,7 +25,7 @@ Par la suite vous devrez descendre l'arborescence pour aller chercher le fronten
 ```
 cd Buddl_Stage/frontend
 ```
-Vous pouvez maintenant installer le projet avec la commande suivante
+Vous devez maintenant installer les dépendances du projet avec la commande suivante
 ```
 npm install
 ```
@@ -45,4 +45,4 @@ Il ne vous reste plus qu'à lancer le backend en entrant
 npm start
 ```
 
-Le site web devrait maintenant être lancé
+Le site web devrait maintenant être lancé sur http://localhost:8080/

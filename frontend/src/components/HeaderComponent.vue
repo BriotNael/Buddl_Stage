@@ -6,8 +6,8 @@
   
   <style scoped>
   .header {
-    background-color: #020C33;
-    color: white;
+    background-color: #ffffff;
+    color: black;
     padding: 15px;
   }
   </style>
