@@ -1,14 +1,14 @@
-## Mission de pre-stage pour Buddl
+# Mission de pre-stage pour Buddl
 
-## Description :
+# Description :
 Actuellement étudiant en BUT3 Inforamtique à l'IUT de Rodez, suite à une demande de stage chez Buddl, je me vois assigné ce travail de conception et développement d'un site web à réaliser en Node.JS, Vue.JS et Express.JS.
 
-## Equipe :
+# Equipe :
 Nael Briot ==> BriotNael ==> briotnael@gmail.com
 
-## Installation et Utilisation du site web :
+# Installation et Utilisation du site web :
 
-# Installer le Projet et Lancer le Frontend
+## Installer le Projet et Lancer le Frontend
 
 Tout d'abord vous devez vous assurer de posséder Node.JS ainsi que NPM sur votre ordinateur
 
@@ -33,7 +33,7 @@ Puis lancer le frontend avec la commande
 ```
 npm run serve
 ```
-# Lancer le Backend
+## Lancer le Backend
 
 Dans une autre invite de commande, il vous faudra vous remettre à la meme arborescence 
 mais cette fois-ci dans le backend

@@ -1,39 +1,59 @@
 <template>
-  <canvas ref="chartCanvas" width="400" height="400"></canvas> <!-- Ajouter un width et height -->
+  <canvas ref="chartCanvas"></canvas>
 </template>
 
 <script setup>
-import { defineProps, onMounted, ref } from "vue";
+import { defineProps, onMounted, ref, watch } from "vue";
 import { Chart, registerables } from "chart.js";
 
-// Enregistrement des types de graphiques disponibles
+// Enregistrer les types de graphiques (bar, line, pie, etc.)
 Chart.register(...registerables);
 
-// Définir les propriétés reçues du parent
 const props = defineProps({
-  chartType: String, // Type de graphique (bar, line, pie, etc.)
-  chartData: Object,
-  chartOptions: Object
+  chartType: String,   // Type de graphique
+  chartData: Object,   // Données du graphique
+  chartOptions: Object // Options du graphique
 });
 
-// Référence au canvas où le graphique sera dessiné
-const chartCanvas = ref(null);
+const chartCanvas = ref(null); // Référence au canvas
+let chartInstance = null; // Stocker l'instance du graphique
 
-onMounted(() => {
-  if (chartCanvas.value) {
-    new Chart(chartCanvas.value, {
-      type: props.chartType, // Type de graphique dynamique (bar, line, pie, etc.)
-      data: props.chartData,  // Données pour le graphique
-      options: props.chartOptions  // Options du graphique (par ex. la légende)
-    });
+// Fonction pour créer ou mettre à jour le graphique
+const renderChart = () => {
+  if (!chartCanvas.value || !props.chartData?.labels?.length) {
+    console.warn("⏳ En attente de données valides...");
+    return;
   }
-});
+
+  // Si un graphique existe déjà, on le détruit avant d’en créer un nouveau
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  // Options spécifiques pour le graphique pie
+  const customOptions = props.chartType === "pie"
+    ? { ...props.chartOptions, scales: { x: { display: false }, y: { display: false } } }
+    : props.chartOptions;
+
+  chartInstance = new Chart(chartCanvas.value, {
+    type: props.chartType,
+    data: props.chartData,
+    options: customOptions
+  });
+};
+
+
+// Exécuter le rendu initial une fois le composant monté
+onMounted(renderChart);
+
+// Surveiller les changements des données et mettre à jour le graphique
+watch(() => props.chartData, renderChart, { deep: true });
 </script>
 
 <style scoped>
 canvas {
-  display: block; /* Assurez-vous que le canvas prend correctement l'espace */
-  margin: 0 auto; /* Centrer le canvas dans son conteneur */
-  max-width: 100%; /* Empêche le canvas de dépasser la largeur de son conteneur */
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 </style>
