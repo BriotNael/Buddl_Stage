@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import axios from "axios";
 import GraphiqueComponent from "./components/GraphiqueComponent.vue";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
@@ -20,7 +21,6 @@ const topVendusData = ref({
   datasets: [{ label: "Quantité Vendue", data: [], backgroundColor: ["purple", "blue", "green", "orange", "red"] }]
 });
 
-
 // Options des graphiques
 const chartOptions = ref({
   responsive: true,
@@ -29,22 +29,20 @@ const chartOptions = ref({
 
 onMounted(async () => {
   try {
-    const response = await fetch("http://localhost:3000/articles");
-    const articles = await response.json();
+    const { data: articles } = await axios.get("http://localhost:3000/articles");
 
     if (!Array.isArray(articles) || articles.length === 0) {
       throw new Error("Données reçues invalides ou vides !");
     }
 
-    console.log("📡 Articles reçus :", articles); // Vérifier les données
+    console.log("📡 Articles reçus :", articles);
 
     // Trier et sélectionner les 5 articles les plus chers
-    const topPrixArticles = [...articles].sort((a, b) => b.prix - a.prix).slice(0, 5);
-    topPrixData.value = {
+    const topPrixArticles = [...articles].sort((a, b) => b.prix - a.prix);
+      topPrixData.value = {
       labels: topPrixArticles.map(a => a.nomA),
       datasets: [{ label: "Prix des Articles", data: topPrixArticles.map(a => parseFloat(a.prix)), backgroundColor: ["purple", "blue", "green", "orange", "red"] }]
     };
-    console.log("🔹 topPrixData :", topPrixData.value);
 
     // Trier et sélectionner les 5 articles les moins chers
     const lowPrixArticles = [...articles].sort((a, b) => a.prix - b.prix).slice(0, 5);
@@ -52,7 +50,6 @@ onMounted(async () => {
       labels: lowPrixArticles.map(a => a.nomA),
       datasets: [{ label: "Prix des Articles", data: lowPrixArticles.map(a => parseFloat(a.prix)), backgroundColor: ["purple", "blue", "green", "orange", "red"] }]
     };
-    console.log("🔹 lowPrixData :", lowPrixData.value);
 
     // Trier et sélectionner les 5 articles les plus vendus
     const topVendusArticles = [...articles].sort((a, b) => b.quantiteVendue - a.quantiteVendue).slice(0, 5);
@@ -60,7 +57,6 @@ onMounted(async () => {
       labels: topVendusArticles.map(a => a.nomA),
       datasets: [{ label: "Quantité Vendue", data: topVendusArticles.map(a => a.quantiteVendue), backgroundColor: ["purple", "blue", "green", "orange", "red"] }]
     };
-    console.log("🔹 topVendusData :", topVendusData.value);
 
   } catch (error) {
     console.error("❌ Erreur lors de la récupération des articles :", error);
